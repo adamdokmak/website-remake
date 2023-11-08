@@ -1,0 +1,11 @@
+<svg height='100vh' width='100vw' viewBox="0 0 1920 1080" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+    <line x1="-10" y1="356.5" x2="1144.5" y2="356.5" stroke="#838181" stroke-linecap="round"/>
+    <line x1="-10" y1="722.5" x2="1144.5" y2="722.5" stroke="#838181" stroke-linecap="round"/>
+    <line x1="1155.5" y1="10.5" x2="1155.5" y2="343.5" stroke="#838181" stroke-linecap="round"/>
+    <line x1="1155.94" y1="368.492" x2="1155.94" y2="711.508" stroke="#838181" stroke-linecap="round"/>
+    <line x1="1541.5" y1="732.5" x2="1541.5" y2="1069.5" stroke="#838181" stroke-linecap="round"/>
+    <line x1="771.5" y1="735.5" x2="771.5" y2="1069.5" stroke="#838181" stroke-linecap="round"/>
+    <line x1="1167.5" y1="356.5" x2="1929.5" y2="356.5" stroke="#838181" stroke-linecap="round"/>
+    <line x1="1167.5" y1="722.5" x2="1929.5" y2="722.5" stroke="#838181" stroke-linecap="round"/>
+</svg>
