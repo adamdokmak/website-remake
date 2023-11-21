@@ -8,7 +8,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import { RecoilRoot } from "recoil";
 import ImageSection from "@/app/components/ImageSection";
 import FloatingDivider from "@/app/components/FloatingDivider";
-import image from "@/assets/img1.png";
+import image from "../../../public/img1.png";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { colorVariants } from "@/utils/variants";

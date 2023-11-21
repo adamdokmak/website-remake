@@ -9,7 +9,7 @@ const NeueMontreal = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Recreation",
+  title: "Awwwards Rec",
   description: "Skill Test",
 };
 

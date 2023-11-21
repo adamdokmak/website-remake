@@ -1,5 +1,5 @@
 import Image from "next/image";
-import image from "@/assets/img1.png";
+import image from "/img1.png";
 
 export default function ImageSection() {
   return (
