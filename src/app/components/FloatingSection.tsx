@@ -3,7 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import Edge from "@/app/svgcomponents/Edge";
 import { useRecoilState } from "recoil";
 import { halfWayState } from "@/atoms/burgerAtom";
-import { pathVariantsXD, pathVariantsYD } from "@/app/utils";
+import {
+  pathVariantsXD,
+  pathVariantsYD,
+  sectionVariants,
+} from "@/utils/variants";
 import PlayButton from "@/app/svgcomponents/PlayButton";
 import useCustomCursorVideo from "@/utils/useCustomCursorVideo";
 
@@ -12,28 +16,23 @@ export default function FloatingSection() {
   const [, setIsHalfWay] = useRecoilState<boolean>(halfWayState);
   const [videoClicked, setVideoClicked] = useState<boolean>(true);
   const [videoHovered, setVideoHovered] = useState<boolean>(false);
+
   const videoRef = useRef<HTMLDivElement>(null);
+  const vTimeRef = useRef<HTMLVideoElement>(null);
   const { mouseX, mouseY } = useCustomCursorVideo(videoRef);
-
-  const sectionVariants = {
-    visible: {
-      maxWidth: "100vw",
-      transition: {
-        duration: 0.4,
-      },
-    },
-    hidden: {
-      maxWidth: "95vw",
-      transition: {
-        duration: 0.4,
-      },
-    },
+  const videoDuration = () => {
+    let time: any = vTimeRef.current?.duration;
+    let roundedTime = Math.floor(time);
+    let finalTime;
+    if (roundedTime.toString().length < 3) {
+      finalTime = `0:${roundedTime}`;
+    }
+    return finalTime;
   };
-
   const { scrollYProgress } = useScroll();
 
   function halfWay() {
-    if (scrollYProgress.get() > 0.5 && (isOpen || !isOpen)) {
+    if (scrollYProgress.get() > 0.1) {
       setIsOpen(true);
     } else if (scrollYProgress.get() < 0.5 && !isOpen) {
       setIsOpen(true);
@@ -44,7 +43,7 @@ export default function FloatingSection() {
 
   useEffect(() => {
     const handleHalfWay = () => {
-      if (scrollYProgress.get() > 0.25) {
+      if (scrollYProgress.get() > 0.15) {
         setIsHalfWay(true);
       } else {
         setIsHalfWay(false);
@@ -64,9 +63,9 @@ export default function FloatingSection() {
 
   return (
     <motion.section
-      className="flex flex-col justify-center items-center"
+      className="flex flex-col justify-center items-center translate-y-[90px]"
       onViewportEnter={() => {
-        halfWay();
+        setIsOpen(true)
       }}
       onViewportLeave={() => {
         halfWay();
@@ -99,9 +98,13 @@ export default function FloatingSection() {
               initial={"initial"}
               animate={isOpen ? "animate" : "initial"}
             >
-              <div className='flex items-end w-full -mb-3 justify-between'>
-                <h1 className="text-white text-[2vw] whitespace-nowrap">DEPO SHOWREEL</h1>
-                <h1 className="text-[#00249C] text-[2vw] whitespace-nowrap">0:43</h1>
+              <div className="flex items-end w-full -mb-3 justify-between">
+                <h1 className="text-white text-[2vw] whitespace-nowrap">
+                  DEPO SHOWREEL
+                </h1>
+                <h1 className="text-[#00249C] text-[2vw] whitespace-nowrap">
+                  {videoDuration()}
+                </h1>
               </div>
             </motion.div>
             <motion.div
@@ -145,6 +148,7 @@ export default function FloatingSection() {
                   animate={videoClicked ? { opacity: 0.8 } : { opacity: 0 }}
                 ></motion.div>
                 <video
+                  ref={vTimeRef}
                   className={`w-full h-full object-cover ${
                     videoClicked && "grayscale"
                   } rounded-[10px] pointer-events-auto`}
@@ -157,41 +161,7 @@ export default function FloatingSection() {
             </motion.div>
           </div>
         </div>
-        <div className="relative z-50">
-          <div className="w-full h-[7.5px] bg-[#222222] grid grid-rows-1 grid-cols-5 p-2 gap-4">
-            <motion.div
-              className="border-[#434343] -translate-y-[8.5px] border-t-[1px] h-0 col-span-2 self-stretch"
-              variants={pathVariantsXD}
-              initial={"initial"}
-              animate={isOpen ? "animate" : "initial"}
-            />
-            <motion.div
-              className="border-[#434343] -translate-y-[8.5px] border-t-[1px] h-0 col-span-3 self-stretch"
-              variants={pathVariantsXD}
-              initial={"initial"}
-              animate={isOpen ? "animate" : "initial"}
-            />
-          </div>
-          <div className="flex h-full w-screen">
-            <div className="w-[0.5vw] h-[82px] bg-[#222222]"></div>
-            <Edge rotate="-90deg" />
-            <div className="w-[38vw] h-[75px]"></div>
-            <Edge rotate="0" />
-            <div className="w-[61vw] h-[75px] bg-[#222222] rounded-bl-[10px] grid grid-rows-1 grid-cols-1 px-2 pb-2 gap-4">
-              <motion.div
-                className="border-[#434343] -translate-y-[6px] border-l-[1px] self-stretch"
-                variants={pathVariantsYD}
-                initial={"initial"}
-                animate={isOpen ? "animate" : "initial"}
-              />
-            </div>
-            <div className="relative w-[0.5vw] h-[82px] bg-[#222222]">
-              <div className="absolute right-[0.5vw] top-[75px]">
-                <Edge rotate="0" />
-              </div>
-            </div>
-          </div>
-        </div>
+
       </motion.div>
     </motion.section>
   );

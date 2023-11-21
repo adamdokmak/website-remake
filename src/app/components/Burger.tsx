@@ -1,19 +1,15 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-  burgerVariants,
-  shuffleLetter,
-  textVariants,
-  useMenuAnimation,
-  variants,
-} from "@/app/utils";
+import { shuffleLetter } from "@/utils/useHoverEffect";
+import { useMenuAnimation } from "@/utils/useMenuAnimation";
+import { burgerVariants, burgerTextVariants, variants } from "@/utils/variants";
 import { useRecoilState } from "recoil";
 import { halfWayState } from "@/atoms/burgerAtom";
 
 export default function Burger() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const scope = useMenuAnimation(isOpen);
-  const [isHalfWay, setIsHalfWay] = useRecoilState<boolean>(halfWayState);
+  const [isHalfWay] = useRecoilState<boolean>(halfWayState);
 
   return (
     <div className="fixed z-50 parent">
@@ -24,12 +20,11 @@ export default function Burger() {
           isHalfWay ? "bg-[#00249C]" : "bg-[#222222]"
         } hover:bg-[#00249C] ${!isOpen && "transition"}
         items-start text-white h-11 w-[8.5rem] mx-7 my-7 px-7 cursor-pointer rounded-[25px] overflow-hidden`}
-        initial={{ opacity: 0 }}
+        initial={"closed"}
         animate={isOpen ? "open" : "closed"}
         transition={{
-          duration: 5,
-          type: "spring",
-          damping: 20,
+          duration: 0.5,
+          ease: "easeInOut",
         }}
         variants={variants}
         onClick={() => setIsOpen(true)}
@@ -39,7 +34,7 @@ export default function Burger() {
           <motion.div
             className="text-center my-2.5 space-x-8"
             animate={isOpen ? "open" : "closed"}
-            variants={textVariants}
+            variants={burgerTextVariants}
           >
             <h1 className="font-light text-[14px] pb-[2px]">menu</h1>
           </motion.div>
