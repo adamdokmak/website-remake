@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Arrow from "@/app/svgcomponents/Arrow";
+import Arrow from "@/svgcomponents/Arrow";
 
 interface IHeroContact {
   isHovered: boolean;

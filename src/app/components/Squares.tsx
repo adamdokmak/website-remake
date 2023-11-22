@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import Logo from "@/app/svgcomponents/Logo";
+import Logo from "@/svgcomponents/Logo";
 import { useState } from "react";
 import { shuffleLetter } from "@/utils/useHoverEffect";
 import HeroContact from "@/app/components/HeroContact";
 import HeroText from "@/app/components/HeroText";
 import {
   arrowVariants,
-  squareVariants,
   heroTextVariants,
   pathVariantsY,
+  squareVariants,
 } from "@/utils/variants";
 
 export default function Squares() {
@@ -26,7 +26,9 @@ export default function Squares() {
         initial={"hidden"}
         animate={"visible"}
       >
-        <Logo />
+        <div className="absolute  left-[10%] translate-x-[10%] top-[50%] translate-y-[-50%] transition-all">
+          <Logo />
+        </div>
       </motion.div>
       <div className="relative col-span-2 self-stretch rounded-[10px]">
         <motion.div

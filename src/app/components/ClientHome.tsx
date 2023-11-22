@@ -1,26 +1,31 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Burger from "@/app/components/Burger";
 import Grid from "@/app/components/Grid";
 import Squares from "@/app/components/Squares";
 import FloatingSection from "@/app/components/FloatingSection";
-import LocomotiveScroll from "locomotive-scroll";
 import { RecoilRoot } from "recoil";
 import ImageSection from "@/app/components/ImageSection";
 import FloatingDivider from "@/app/components/FloatingDivider";
-import image from "../../../public/img1.png";
-import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { colorVariants } from "@/utils/variants";
 import CircleSection from "@/app/components/CircleSection";
+import Lenis from "@studio-freight/lenis";
 
 export default function ClientHome() {
-  useEffect(() => {
-    const locomotiveScroll = new LocomotiveScroll();
-  }, []);
-
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: "-10px" });
+
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
 
   return (
     <RecoilRoot>

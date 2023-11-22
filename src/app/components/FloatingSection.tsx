@@ -1,6 +1,5 @@
 import { motion, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import Edge from "@/app/svgcomponents/Edge";
 import { useRecoilState } from "recoil";
 import { halfWayState } from "@/atoms/burgerAtom";
 import {
@@ -8,7 +7,7 @@ import {
   pathVariantsYD,
   sectionVariants,
 } from "@/utils/variants";
-import PlayButton from "@/app/svgcomponents/PlayButton";
+import PlayButton from "@/svgcomponents/PlayButton";
 import useCustomCursorVideo from "@/utils/useCustomCursorVideo";
 
 export default function FloatingSection() {
@@ -63,7 +62,7 @@ export default function FloatingSection() {
 
   return (
     <motion.section
-      className="flex flex-col justify-center items-center translate-y-[90px]"
+      className="flex flex-col justify-center items-center translate-y-[100px]"
       onViewportEnter={() => {
         setIsOpen(true)
       }}

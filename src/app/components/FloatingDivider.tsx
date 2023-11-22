@@ -1,6 +1,6 @@
 import {motion} from "framer-motion";
 import {pathVariantsXD, pathVariantsYD} from "@/utils/variants";
-import Edge from "@/app/svgcomponents/Edge";
+import Edge from "@/svgcomponents/Edge";
 
 export default function FloatingDivider({isOpen}: {isOpen: boolean}) {
     return (

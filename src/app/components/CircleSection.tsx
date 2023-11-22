@@ -1,13 +1,13 @@
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+// import { useScroll } from "framer-motion";
 import { useRef } from "react";
 
 export default function CircleSection() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: ref,
+  // });
 
-  const scale = useTransform(scrollYProgress, [0, 1], ["0.89rem", "110rem"]);
+  // const scale = useTransform(scrollYProgress, [0, 1], ["0.89rem", "110rem"]);
 
   return (
       <>
